@@ -8,9 +8,13 @@ namespace WebApplication8.Models
 {
     public class User
     {
+        [Key]
+        public int UserNo { get; set; }
         [Required]
         public string UserID { get; set; }
         [Required]
         public string UserPW { get; set; }
+        [Required]
+        public string UserPhone { get; set; }
     }
 }

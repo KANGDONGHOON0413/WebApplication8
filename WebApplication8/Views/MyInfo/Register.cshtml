@@ -1,0 +1,21 @@
+﻿@model WebApplication8.Models.User
+
+
+<form method="post" asp-controller="MyInfo" asp-action="Register">
+    <div>
+        <h1>로그인 페이지</h1>
+    </div>
+    <div class="col-lg-8">
+        <label>ID 입력</label>
+        <input class="form-control" type="text" asp-for="UserID" placeholder="아이디" />  
+    </div>
+    <div class="col-lg-8">
+        <label>PW 입력</label>
+        <input class="form-control" asp-for="UserPW" type="password" />
+    </div>
+    <div class="col-lg-8">
+        <label>Phone Num</label>
+        <input class="form-group" type="text" asp-for="UserPhone" placeholder="000-0000-0000" />
+    </div>
+    <button class="form-group" type="submit">등록</button>
+</form>
