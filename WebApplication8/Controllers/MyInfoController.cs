@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,39 @@ namespace WebApplication8.Controllers
             }
             return View();
         }
+
+        public IActionResult Login()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginCheck model)
+        {
+            if (ModelState.IsValid)
+            {
+                using(var db = new DContext())
+                {
+                    var temp = db.Users.FirstOrDefault(A => A.UserID.Equals(model.UserID) && A.UserPW.Equals(model.UserPW));
+                    if(!(temp is null))
+                    {
+                     //   HttpContext.Session.SetInt32("LoginKey", temp.UserNo);
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+              
+            }
+
+            return View(model);
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("LoginKey");
+            return RedirectToAction("Index", "Home");
+        }
+
 
     }
 }
